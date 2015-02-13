@@ -5,45 +5,136 @@
 <title>Untitled Document</title>
 </head>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
 $(document).ready(
 	function(){
-		$("#calc").click(
+		var num1 = 0;
+		var num2 = 0;
+		var total = 0;
+		
+		var getNumber = function(){
+			num1 = parseInt($("#num1").val());
+			num2 = parseInt($("#num2").val());
+		};
+		
+		var showNumber = function (){
+			$("#display").html("<h1>"+total+"</h1>");
+		};
+			
+		var add = function(){
+			getNumber();
+			total = num1 + num2;
+		}
+		
+		var sub = function(){
+			getNumber();
+			total = num1 - num2;
+		}
+		
+		var mult = function(){
+			getNumber();
+			total = num1 * num2;
+		}
+		
+		var divide = function(){
+			getNumber();
+			total = num1 / num2;
+		}
+		
+		$("#topleft").click(
 			function(){
-				var num1 = parseInt($("#num1").val());
-				var num2 = parseInt($("#num2").val());
-				var total = num1 + num2;
-				$("#display").html("<h1>"+total+"</h1>");
+				add();	
+				alert(total);
+			}
+		);
+		
+		$("#botleft").click(
+			function(){
+				mult();	
+				alert(total);
+			}
+		);
+		
+		$("#topright").click(
+			function(){
+				sub();	
+				alert(total);
+			}
+		);
+		
+		$("#botright").click(
+			function(){
+				divide();	
+				alert(total);
 			}
 		);
 	}
 );
-
-
 </script>
+<style>
+#topleft {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 50%;
+	height: 50%;
+	background: #F88;
+}
 
+#topright {
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 50%;
+	height: 50%;
+	background: #A9a;
+}
 
+#botleft {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 50%;
+	height: 50%;
+	background: #AAF2DC;
+}
 
+#botright {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	width: 50%;
+	height: 50%;
+	background: #D665;
+}
 
+#numbers {
+	position: fixed;
+	top: 40%;
+	left: 40%;
+	z-index:1;
+}
 
+#display{
+	width: 100%;
+	position: fixed;
+	bottom: -100px;
+	height: 100px;
+	left: 0;
+	z-index: 1;
+}
+</style>
 
-
-
-
-
-<body>
-	<input id='num1' type='text' placeholder='first number'/>
-    <button id='add'>+</button>
-    <button id='calc'>Calculate</button>
-    <input id='num2' type='text' placeholder='second number'/>    
-   
+<body><div id="numbers">
+		<input id='num1' type='text' placeholder='first number'/>
+    	<input id='num2' type='text' placeholder='second number'/>
+       </div>
+    <div id="topleft"></div>
+    <div id="topright"></div>
+    <div id="botleft"></div>
+    <div id="botright"></div>
     <div id="display">
     </div>
-
-
-
-
 </body>
 </html>
